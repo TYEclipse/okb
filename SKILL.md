@@ -1,20 +1,12 @@
 ---
 name: open-knowledge-base
-description: >-
-  OKB — Open Knowledge Base for AI Agents. A unified knowledge management
-  system combining vector semantic search (ChromaDB), 2-edge-connected
-  knowledge graphs (NetworkX), and Open Knowledge Format (OKF v1.0) compliance.
-  Use when building, querying, or maintaining a structured knowledge base
-  for AI agents, digital gardens, or worldbuilding projects.
+slug: open-knowledge-base
+displayName: OKB — Open Knowledge Base
+description: "Unified knowledge management for AI agents: ChromaDB vector search + NetworkX 2-edge-connected graph + OKF v1.0 compliance."
 category: software-development
-tags:
-  - knowledge-graph
-  - vector-search
-  - ai-agent
-  - okf
-  - chromadb
-  - networkx
+tags: [knowledge-graph, vector-search, ai-agent, okf, chromadb, networkx]
 version: "1.0.0"
+homepage: https://github.com/TYEclipse/okb
 links:
   docs: https://github.com/TYEclipse/okb
   source: https://github.com/TYEclipse/okb
@@ -92,3 +84,7 @@ KnowledgeBase
 ## License
 
 MIT
+
+## References
+
+- `references/privacy-audit.md` — Checklist for sanitizing secrets/PII before open-sourcing a knowledge base
