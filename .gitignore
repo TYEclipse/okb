@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# ChromaDB (local data — never commit)
+.chroma/
+.okb/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+
+# Mypy
+.mypy_cache/
+
+# Graph data (project-specific)
+graph.json
+
+# OKF content (project-specific)
+concepts/
+okf.yaml
