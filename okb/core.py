@@ -196,7 +196,7 @@ class KnowledgeBase:
             "version": _OKB_VERSION,
             "concepts": oks.get("concepts", 0),
             "files": oks.get("files", 0),
-            "vector_indexed": vs.get("count", 0),
+            "vector_indexed": vs.get("concepts", 0),
             "graph_nodes": gs.get("nodes", 0),
             "graph_edges": gs.get("edges", 0),
             "graph_verified": gs.get("verified", False),
