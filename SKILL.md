@@ -3,14 +3,15 @@ name: open-knowledge-base
 slug: open-knowledge-base
 displayName: OKB — Open Knowledge Base
 displayName_zh: OKB — AI 智能体开放知识库
-version: "1.0.2"
+version: "1.1.0"
 homepage: https://github.com/TYEclipse/okb
 homepage_zh: https://gitee.com/tyeclipse/okb
 description: "Unified knowledge management for AI agents: ChromaDB vector search + NetworkX 2-edge-connected graph + OKF v1.0 compliance. Build, query, and maintain structured knowledge bases for digital gardens, worldbuilding, and RAG pipelines."
 description_zh: "面向 AI 智能体的统一知识管理系统：ChromaDB 向量语义搜索 + NetworkX 双连通知识图谱 + OKF v1.0 标准合规。适用于数字花园、世界观构建、RAG 知识管线等场景。"
 category: software-development
-tags: [knowledge-graph, vector-search, ai-agent, okf, chromadb, networkx, rag]
 changelog: |
+  v1.1.0: OKF v0.1 全合规 — type(必填)/timestamp/description/resource, index.md/log.md, conformance验证, CLI新增3命令
+  v1.0.3: 修复 stats() vector_indexed 字段 key 错误 (count→concepts)；新增 references/reconstruction.md
   v1.0.2: 代码自包含（scripts/okb/）、全中文文档、FAQ/反模式/能力边界/错误处理指南、Gitee 镜像、触发决策表
   v1.0.0: 初始发布
 ---
@@ -264,12 +265,14 @@ python3 scripts/okb/cli.py build . --k 3 --verify
 
 ```markdown
 ---
-okf: "1.0"
+type: "WorldbuildingConcept"
 id: "grav-tax"
 title: "Gravity Tax"
+description: "A progressive tax based on gravitational acceleration."
 category: "economics"
+resource: ""
 tags: [taxation, space-law]
-created: "2026-06-20"
+timestamp: "2026-06-20T00:00:00Z"
 ---
 # Gravity Tax
 
@@ -301,6 +304,16 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple chromadb networkx pyyaml
 | 硅基流动 API（国内可直连） | https://api.siliconflow.cn/v1 |
 
 ---
+
+## 重构已有知识库
+
+如果已有散落的 .md 文件 + ChromaDB + graph.json，需要迁移到 OKF 格式：
+→ 参考 `references/reconstruction.md`（轻量迁移，不重复索引）
+
+## 技能维护（作者用）
+
+Bug 修复后如何同步 GitHub / Gitee / SkillHub 三个平台：
+→ 参考 `references/maintenance.md`（三平台同步流程 + 凭证管理）
 
 ## License / 协议
 

@@ -103,18 +103,29 @@ class KnowledgeBase:
     # ── CRUD ──────────────────────────────────────────────
 
     def add_concept(self, oid: str, title: str, content: str,
+                    concept_type: str = "Concept",
                     category: str = "", tags: list[str] | None = None) -> dict:
         """
         Add a new concept to the knowledge base.
 
         Steps:
-          1. Write OKF-compliant markdown file
+          1. Write OKF v0.1 compliant markdown file
           2. Index in vector store
           3. Add node to graph + maintain 2-edge-connectivity
           4. Update OKF manifest
+
+        Args:
+            oid: Stable concept identifier
+            title: Human-readable name
+            content: Markdown body
+            concept_type: OKF v0.1 REQUIRED — asset/concept kind
+            category: OKB extension — domain grouping
+            tags: Cross-classification tags
         """
         # 1. OKF file
-        filepath = self.okf().write_concept(oid, title, content, category, tags)
+        filepath = self.okf().write_concept(oid, title, content,
+                                            concept_type=concept_type,
+                                            category=category, tags=tags)
         filepath_str = str(filepath.relative_to(self.root))
 
         # 2. Vector index
@@ -122,15 +133,17 @@ class KnowledgeBase:
             oid=oid,
             title=title,
             content=content,
-            category=category,
+            category=category if category else concept_type,
             path=filepath_str,
         )
 
         # 3. Graph
-        self.graph().add_node(oid, title=title, content=content, category=category)
+        self.graph().add_node(oid, title=title, content=content,
+                              category=category if category else concept_type)
 
         # 4. Manifest
-        self.okf().register(oid, title, category)
+        self.okf().register(oid, title, concept_type=concept_type,
+                            category=category, tags=tags)
 
         return {"id": oid, "doc_id": doc_id, "path": filepath_str}
 
